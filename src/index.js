@@ -19,9 +19,11 @@ const updateTimestamp = propertyPath => data => {
 	if (propertyPath.includes('createdAt') && has(data, propertyPath)) {
 		return;
 	}
+    /*
     if(data.hasOwnProperty('$set'))
         return set(data['$set'],propertyPath,new Date ());
-	return set(data, propertyPath, new Date());
+    */
+	return set(data, `$currentDate.${propertyPath}`,true);
 };
 
 const checkAndAddCurrentDate = (data, property) => {
